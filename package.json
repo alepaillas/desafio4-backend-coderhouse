@@ -1,7 +1,7 @@
 {
-  "name": "pre-entrega-2-backend-paillas",
+  "name": "desafio4-backend-paillas",
   "version": "1.0.0",
-  "description": "Segunda pre-entrega del proyecto final del curso de backend de Coderhouse. Corresponde a un eCommerce hecho con NodeJs Express y MongoDb avanzado.",
+  "description": "Implementación de login.",
   "main": "/src/app.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alepaillas/preEntrega2-backend-paillas"
+    "url": "git+https://github.com/alepaillas/desafio4-backend-paillas"
   },
   "keywords": [
     "ecommerce"
@@ -18,13 +18,18 @@
   "author": "Alejandra Paillas",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/alepaillas/preEntrega2-backend-paillas/issues"
+    "url": "https://github.com/alepaillas/desafio4-backend-paillas/issues"
   },
-  "homepage": "https://github.com/alepaillas/preEntrega2-backend-paillas#readme",
+  "homepage": "https://github.com/alepaillas/desafio4-backend-paillas#readme",
   "dependencies": {
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
     "mongoose": "^8.4.0",
-    "mongoose-paginate-v2": "^1.8.1"
+    "mongoose-paginate-v2": "^1.8.1",
+    "session-file-store": "^1.5.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
