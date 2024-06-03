@@ -1,0 +1,32 @@
+{
+  "name": "pre-entrega-2-backend-paillas",
+  "version": "1.0.0",
+  "description": "Segunda pre-entrega del proyecto final del curso de backend de Coderhouse. Corresponde a un eCommerce hecho con NodeJs Express y MongoDb avanzado.",
+  "main": "/src/app.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.mjs",
+    "dev": "nodemon ./src/app.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alepaillas/preEntrega2-backend-paillas"
+  },
+  "keywords": [
+    "ecommerce"
+  ],
+  "author": "Alejandra Paillas",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/alepaillas/preEntrega2-backend-paillas/issues"
+  },
+  "homepage": "https://github.com/alepaillas/preEntrega2-backend-paillas#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "mongoose-paginate-v2": "^1.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
