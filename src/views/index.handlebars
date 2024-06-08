@@ -1,3 +1,10 @@
-<div>
-  <h1>Hola, {{name}}!</h1>
+<div class="container mx-auto">
+  <div class="grid grid-cols-1 grid-rows-2">
+    <h1 class="text-center text-6xl font-bold">Hola, {{user.name}}!</h1>
+    {{#if isAdmin}}
+      <p class="w-full max-w-5xl justify-self-center">Es bueno ser admin.</p>
+    {{else}}
+      <p>No tienes permiso de admin.</p>
+    {{/if}}
+  </div>
 </div>
