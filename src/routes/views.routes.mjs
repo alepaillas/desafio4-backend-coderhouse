@@ -5,9 +5,9 @@ const router = Router();
 router.get("/", (req, res) => {
   // si existe una sesión vamos al index, sino al login
   if (req.session.user) {
-    res.render("products", {
+    res.render("index", {
       style: "output.css",
-      user: req.session.user.email,
+      user: req.session.user,
       isAdmin: req.session.user.role === "admin", // va a guardar un booleano que usaremos para testear en la plantilla
     });
   }
