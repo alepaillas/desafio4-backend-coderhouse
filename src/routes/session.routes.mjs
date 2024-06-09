@@ -47,7 +47,9 @@ router.post("/login", async (req, res) => {
       role: "user",
     };
 
-    res.status(200).json({ status: "success", payload: req.session.user });
+    return res
+      .status(200)
+      .json({ status: "success", payload: req.session.user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: "Error", msg: "Internal server error." });

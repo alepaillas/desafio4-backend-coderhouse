@@ -8,13 +8,13 @@ router.get("/", (req, res) => {
     res.render("index", {
       style: "output.css",
       user: req.session.user,
-      isAdmin: req.session.user.role === "admin", // va a guardar un booleano que usaremos para testear en la plantilla
+      isAdmin: req.session.user.role === "admin",
+    });
+  } else {
+    res.render("login", {
+      style: "output.css",
     });
   }
-
-  res.render("login", {
-    style: "output.css",
-  });
 });
 
 router.get("/register", (req, res) => {

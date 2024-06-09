@@ -1,9 +1,13 @@
 import { request, response } from "express";
 
 export const isLogin = async (req = request, res = response, next) => {
-  if (req.session.user) {
+  try {
+    if (!req.session.user) {
+      throw new Error("Usuario no logueado"); // Throw an error for clarity
+    }
     next();
-  } else {
-    res.status(401).json({ status: "Error", msg: "Usuario no logueado" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(401).json({ status: "Error", msg: error.message });
   }
 };
