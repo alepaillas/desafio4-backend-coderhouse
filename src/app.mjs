@@ -7,6 +7,9 @@ import productsRouter from "./routes/products.routes.mjs";
 import cartsRouter from "./routes/carts.routes.mjs";
 import handlebars from "express-handlebars";
 import viewRoutes from "./routes/views.routes.mjs";
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import sessionRouter from "./routes/session.routes.mjs";
 
 // Conexión con la base de datos
 initializeMongoDb();
@@ -30,9 +33,25 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Guardar las sesiones en la base de datos
+app.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl:
+        "mongodb+srv://coderUser:jajalolxd123@cluster0.nr27ayq.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0",
+      //mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+      ttl: 15,
+    }),
+    secret: "CodigoSecreto",
+    resave: true,
+    saveUninitialized: false,
+  }),
+);
+
 // Usamos las rutas
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/session", sessionRouter);
 
 // iniciamos el motor handlebars
 app.engine("handlebars", handlebars.engine());
