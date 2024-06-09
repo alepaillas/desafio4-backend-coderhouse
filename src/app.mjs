@@ -7,6 +7,7 @@ import viewRoutes from "./routes/views.routes.mjs";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import router from "./routes/index.mjs";
+import { mongoUri } from "./config/mongoDb.config.mjs";
 
 // Conexión con la base de datos
 initializeMongoDb();
@@ -34,14 +35,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl:
-        "mongodb+srv://coderUser:jajalolxd123@cluster0.nr27ayq.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0",
-      //mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
-      ttl: 15,
+      mongoUrl: mongoUri,
+      //mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true }, // default desde mongo 5
+      ttl: 15, // time-to-live en segundos, después de 15s de inactividad se elimina la sesión en la BBDD
     }),
-    secret: "CodigoSecreto",
-    resave: true,
+    secret: "CodigoSecreto", // clave para encriptar los datos de sesión
+    resave: true, // guarda la sesión incluso si no se ha modificado desde el último request
+    // solo crea sesiones que han sido modificadas con un request,
+    // es decir solo si se ha interactuado con la página, por ejemplo con un login
     saveUninitialized: false,
+    // la cookie no será enviada a terceros
+    // es necesario setear esta opción para nuevas versiones de firefox
+    cookie: {
+      sameSite: "Lax",
+    },
   }),
 );
 
