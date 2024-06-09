@@ -2,14 +2,11 @@
 import express from "express";
 import { initializeMongoDb } from "./config/mongoDb.config.mjs";
 import { disconnectMongoDb } from "./config/mongoDb.config.mjs";
-// Importamos nuestras rutas
-import productsRouter from "./routes/products.routes.mjs";
-import cartsRouter from "./routes/carts.routes.mjs";
 import handlebars from "express-handlebars";
 import viewRoutes from "./routes/views.routes.mjs";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import sessionRouter from "./routes/session.routes.mjs";
+import router from "./routes/index.mjs";
 
 // Conexión con la base de datos
 initializeMongoDb();
@@ -49,9 +46,7 @@ app.use(
 );
 
 // Usamos las rutas
-app.use("/api/products", productsRouter);
-app.use("/api/carts", cartsRouter);
-app.use("/api/session", sessionRouter);
+app.use("/api", router);
 
 // iniciamos el motor handlebars
 app.engine("handlebars", handlebars.engine());

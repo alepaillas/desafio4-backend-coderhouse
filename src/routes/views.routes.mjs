@@ -2,23 +2,24 @@ import { Router } from "express";
 
 const router = Router();
 
-let adminUser = {
-  name: "ale",
-  last_name: "paillas",
-  role: "admin",
-};
-
-let testUser = {
-  name: "usuario",
-  last_name: "uno",
-  role: "user",
-};
-
 router.get("/", (req, res) => {
-  res.render("index", {
+  // si existe una sesión vamos al index, sino al login
+  if (req.session.user) {
+    res.render("products", {
+      style: "output.css",
+      user: req.session.user.email,
+      isAdmin: req.session.user.role === "admin", // va a guardar un booleano que usaremos para testear en la plantilla
+    });
+  }
+
+  res.render("login", {
     style: "output.css",
-    user: adminUser,
-    isAdmin: adminUser.role === "admin", // va a guardar un booleano que usaremos para testear en la plantilla
+  });
+});
+
+router.get("/register", (req, res) => {
+  res.render("register", {
+    style: "output.css",
   });
 });
 
